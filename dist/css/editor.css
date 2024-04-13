@@ -1,0 +1,444 @@
+/****************************************
+ * Level Up Base Theme for High Level (GHL)
+ * https//levelupthemes.com
+ * Version: v1.0.0
+ ****************************************/
+/*--------------------------------------------------------------
+THEME CSS FOR GHL EDITOR & LIVE VIEW
+
+- Includes CSS for both live and editor views
+- Uses @media and @container queries to provide consistency when editing mobile layouts
+- Modifies color palette in Editor with theme labels
+
+Add editor option vars to :root in GHL Custom CSS to modify editor behavior.
+
+EDITOR OPTIONS:
+
+Show custom value colors: block | none
+--editor-display-custom-colors: none;
+
+--------------------------------------------------------------*/
+/** THEME DEFAULTS
+ * These values are used as fallbacks if Custom Values are not set.
+ * Defaults are used by javascript to set fallbacks when custom value config
+ * options are improperly set. This is required since some browsers (i.e. Firefox)
+ * do not properly use @property initial-value when a variable is set to an
+ * invalid value.
+ **/
+:root {
+  --default-theme-primary-color: #079561;
+  --default-theme-secondary-color: #56D296;
+  --default-theme-accent-color: #56D296;
+  --default-theme-attention-color: #079561;
+  --default-theme-text-headline-color: #000;
+  --default-theme-text-content-color: #859389;
+  --default-theme-text-link-color: #188bf6;
+  --default-theme-text-dark-bg-color: #fff;
+  --default-theme-icon-color: #079561;
+  --default-theme-button-primary-text-color: #fff;
+  --default-theme-button-primary-bg-color: #079561;
+  --default-theme-background-1-color: #fff;
+  --default-theme-background-2-color: #FBFBFB;
+  --default-theme-background-dark-color: #191E1C;
+  --default-theme-headlinefont: Plus Jakarta Sans, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  --default-theme-contentfont: Plus Jakarta Sans, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+}
+
+/* Theme Custom Properties */
+@property --color-lt985yd7 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #079561;
+}
+@property --color-lt9ca2ns {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #56D296;
+}
+@property --color-luhfgx7m {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #56D296;
+}
+@property --color-luhfsans {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #079561;
+}
+@property --color-lt9cay4k {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #000;
+}
+@property --color-lt9cbrrr {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #859389;
+}
+@property --color-lt9ceg80 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #188bf6;
+}
+@property --color-lt9cf6ne {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fff;
+}
+@property --color-lt9cg14m {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #079561;
+}
+@property --color-luhh4ycy {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fff;
+}
+@property --color-luhgqfvg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #079561;
+}
+@property --color-lt9cidqc {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fff;
+}
+@property --color-lt9ciq7x {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #FBFBFB;
+}
+@property --color-lt9cj7fg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #191E1C;
+}
+/* THEME CONFIG VARS */
+/* Override the GHL default vars */
+:root {
+  /* Text Colors */
+  --text-color: var(--theme-text-content-color);
+  --link-color: var(--theme-text-link-color);
+  /* Add additional overrides here as needed */
+}
+
+/*
+  CUSTOM VALUE VARIABLES
+  These variables ar set from GHL custom values in a style block
+  in the themplate's hidden Global Code block on each page.
+*/
+:root {
+  /* Theme Colors */
+  /* [CustomValue] COLOR: Primary */
+  /* {{ custom_values.color_primary }} */
+  --theme-primary-color: var(--color-lt985yd7);
+  /* [CustomValue] COLOR: Secondary */
+  /* {{ custom_values.color_secondary }} */
+  --theme-secondary-color: var(--color-lt9ca2ns);
+  /* [CustomValue] COLOR: Accent */
+  /* {{ custom_values.color_accent }} */
+  --theme-accent-color: var(--color-luhfgx7m);
+  /* [CustomValue] COLOR: Attention */
+  /* {{ custom_values.color_attention }} */
+  --theme-attention-color: var(--color-luhfsans);
+  /* Text Colors */
+  /* [CustomValue] COLOR: Text Headline */
+  /* {{ custom_values.color_text_headline }} */
+  --theme-text-headline-color: var(--color-lt9cay4k);
+  /* [CustomValue] COLOR: Text Content */
+  /* {{ custom_values.color_text_content }} */
+  --theme-text-content-color: var(--color-lt9cbrrr);
+  /* [CustomValue] COLOR: Text Link */
+  /* {{ custom_values.color_text_link }} */
+  --theme-text-link-color: var(--color-lt9ceg80);
+  /* [CustomValue] COLOR: Text Dark BG */
+  /* {{ custom_values.color_text_content_dark_bg }} */
+  --theme-text-dark-bg-color: var(--color-lt9cf6ne);
+  /* Icon Colors */
+  /* [CustomValue] COLOR: Icon */
+  /* {{ custom_values.color_icon }} */
+  --theme-icon-color: var(--color-lt9cg14m);
+  /* [CustomValue] COLOR: Button Primary Text */
+  /* {{ custom_values.color_button_primary_text }} */
+  --theme-button-primary-text-color: var(--color-luhh4ycy);
+  /* [CustomValue] COLOR: Button Primary BG */
+  /* {{ custom_values.color_button_primary_bg }} */
+  --theme-button-primary-bg-color: var(--color-luhgqfvg);
+  /* Background Colors */
+  /* [CustomValue] COLOR: Background #1 */
+  /* {{ custom_values.color_background_1 }} */
+  --theme-background-1-color: var(--color-lt9cidqc);
+  /* [CustomValue] COLOR: Background #2 */
+  /* {{ custom_values.color_background_2 }} */
+  --theme-background-2-color: var(--color-lt9ciq7x);
+  /* [CustomValue] COLOR: Background Dark */
+  /* {{ custom_values.color_background_dark }} */
+  --theme-background-dark-color: var(--color-lt9cj7fg);
+}
+
+/**
+ * GHL EDITOR
+ * Make pages easier to edit and more visually consistent with the live version
+ **/
+/* Make the editor behave with @container queries only in mobile view */
+section.hl_page-creator--content.--mobile {
+  container-type: inline-size;
+  container-name: EditorViewPort;
+}
+section.hl_page-creator--content.--mobile div[id^=tippy] {
+  position: absolute !important;
+}
+
+/* Style Editor Modifications */
+#page-creator .hl_style-control .color-border .color-box[title^=Theme], #page-creator .hl_style-control .color-border .color-box[title=Transparent], #page-creator .hl_style-control .color-border .color-box[title=Overlay] {
+  order: -1;
+  margin-bottom: 10px !important;
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme]:hover::before {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--title, attr(title));
+  position: absolute;
+  left: 0;
+  top: -18px;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: white;
+  background: #188bf6;
+  text-wrap: nowrap;
+  padding: 4px;
+  line-height: 1em;
+}
+#page-creator .hl_style-control .color-border .color-box[title=Transparent]:hover::before {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--title, attr(title));
+  position: absolute;
+  left: 0;
+  top: -18px;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: white;
+  background: #188bf6;
+  text-wrap: nowrap;
+  padding: 4px;
+  line-height: 1em;
+}
+#page-creator .hl_style-control .color-border .color-box[title=Overlay]:hover::before {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--title, attr(title));
+  position: absolute;
+  left: 0;
+  top: -18px;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: white;
+  background: #188bf6;
+  text-wrap: nowrap;
+  padding: 4px;
+  line-height: 1em;
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme]::after {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--short-label, attr(title));
+  position: absolute;
+  overflow: clip;
+  left: 0;
+  bottom: -1.4em;
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  color: black;
+  background: white;
+}
+#page-creator .hl_style-control .color-border .color-box[title=Transparent]::after {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--short-label, attr(title));
+  position: absolute;
+  overflow: clip;
+  left: 0;
+  bottom: -1.4em;
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  color: black;
+  background: white;
+}
+#page-creator .hl_style-control .color-border .color-box[title=Overlay]::after {
+  font-size: 10px;
+  content: attr(title);
+  content: var(--short-label, attr(title));
+  position: absolute;
+  overflow: clip;
+  left: 0;
+  bottom: -1.4em;
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  color: black;
+  background: white;
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title*=Text], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title*=Text], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title*=Text] {
+  order: -60;
+  --short-label: "Text";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title*=Button], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title*=Button], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title*=Button] {
+  order: -20;
+  --short-label: "Button";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Primary"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Primary"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Primary"] {
+  order: -100;
+  --title: "Primary";
+  --short-label: "Primary";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Secondary"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Secondary"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Secondary"] {
+  order: -99;
+  --title: "Secondary";
+  --short-label: "Secondary";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Accent"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Accent"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Accent"] {
+  order: -98;
+  --title: "Accent";
+  --short-label: "Accent";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Attention"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Attention"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Attention"] {
+  order: -97;
+  --title: "Attention";
+  --short-label: "Attention";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Background #1"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Background #1"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Background #1"] {
+  order: -90;
+  --title: "Background #1";
+  --short-label: "BG1";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Background #2"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Background #2"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Background #2"] {
+  order: -89;
+  --title: "Background #2";
+  --short-label: "BG2";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Background Dark"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Background Dark"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Background Dark"] {
+  order: -88;
+  --title: "Dark Background";
+  --short-label: "Dark";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title^="Theme Headline"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title^="Theme Headline"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title^="Theme Headline"] {
+  order: -70;
+  --title: "Headline Text";
+  --short-label: "Head";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title^="Theme Content"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title^="Theme Content"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title^="Theme Content"] {
+  order: -69;
+  --title: "Content Text";
+  --short-label: "Body";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title^="Theme Link"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title^="Theme Link"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title^="Theme Link"] {
+  order: -68;
+  --title: "Link Text";
+  --short-label: "Link";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Dark Bg (Text)"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Dark Bg (Text)"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Dark Bg (Text)"] {
+  order: -67;
+  --title: "Dark Bg Text";
+  --short-label: "Text";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Icon"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Icon"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Icon"] {
+  order: -50;
+  --title: "Icon";
+  --short-label: "Icon";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Button Primary Background"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Button Primary Background"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Button Primary Background"] {
+  order: -30;
+  --title: "Button Background";
+  --short-label: "Button";
+}
+#page-creator .hl_style-control .color-border .color-box[title^=Theme][title="Theme Button Primary (Text)"], #page-creator .hl_style-control .color-border .color-box[title=Transparent][title="Theme Button Primary (Text)"], #page-creator .hl_style-control .color-border .color-box[title=Overlay][title="Theme Button Primary (Text)"] {
+  order: -29;
+  --title: "Button Text";
+  --short-label: "Button";
+}
+#page-creator .hl_style-control .color-border .color-box[title^="[CV]"] {
+  display: none;
+  display: var(--editor-display-custom-colors, none);
+  order: -1;
+  margin-bottom: 10px !important;
+  border-radius: 0;
+  background-color: #ccc;
+  background-image: none;
+}
+#page-creator .hl_style-control .color-border .color-box[title^="[CV]"]::after {
+  content: "[CV]";
+  font-size: 10px;
+  position: absolute;
+  overflow: clip;
+  left: 0;
+  bottom: -1.4em;
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  color: black;
+  background: white;
+}
+#page-creator .hl_style-control .color-border .color-box .active-color {
+  border: 2px dotted red !important;
+}
+
+/* HELPER LABELS */
+#page-creator .card > .ui .outline-border::after,
+#page-creator .card2 > .ui .outline-border::after,
+#page-creator .content > .ui .outline-border::after,
+#page-creator .c-button:has(.btn-primary, .btn-secondary, .btn-link) > .ui .outline-border::after {
+  content: var(--_block-label);
+  position: absolute;
+  right: 1.5px;
+  bottom: -22px;
+  border-radius: 2px;
+  font-size: 10px;
+  color: #fff;
+  color: var(--white, #fff);
+  background-color: #333;
+  background-color: var(--indigo, #333);
+  line-height: 10px;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+#page-creator .card {
+  --_block-label: "CARD";
+}
+#page-creator .card2 {
+  --_block-label: "CARD2";
+}
+#page-creator .content {
+  --_block-label: "CONTENT";
+}
+#page-creator .c-button:has(.btn-primary) {
+  --_block-label: "PRIMARY";
+}
+#page-creator .c-button:has(.btn-secondary) {
+  --_block-label: "SECONDARY";
+}
+#page-creator .c-button:has(.btn-link) {
+  --_block-label: "LINK";
+}
+#page-creator .icon2 > .ui .outline-border::before,
+#page-creator .icon2-invert > .ui .outline-border::before {
+  content: "ICON2";
+  content: var(--_block-label);
+  position: absolute;
+  left: 1.5px;
+  bottom: -8px;
+  border-radius: 2px;
+  font-size: 10px;
+  color: #fff;
+  color: var(--white, #fff);
+  background-color: #333;
+  background-color: var(--indigo, #333);
+  line-height: 10px;
+  padding: 2px 4px;
+  white-space: nowrap;
+  --_block-label: "ICON2";
+}

@@ -1,0 +1,43 @@
+/** THEME DEFAULTS
+ * These values are used as fallbacks if Custom Values are not set.
+ * Defaults are used by javascript to set fallbacks when custom value config
+ * options are improperly set. This is required since some browsers (i.e. Firefox)
+ * do not properly use @property initial-value when a variable is set to an
+ * invalid value.
+ **/
+
+$defaults: (
+  theme-primary-color: #079561,
+  theme-secondary-color: #56D296,
+  theme-accent-color: #56D296,
+  theme-attention-color: #079561,
+
+  theme-text-headline-color: #000,
+  theme-text-content-color: #859389,
+  theme-text-link-color: #188bf6,
+  theme-text-dark-bg-color: #fff,
+
+  theme-icon-color: #079561,
+
+  theme-button-primary-text-color: #fff,
+  theme-button-primary-bg-color: #079561,
+
+
+  theme-background-1-color: #fff,
+  theme-background-2-color: #FBFBFB,
+  theme-background-dark-color: #191E1C,
+
+  theme-headlinefont: 'Plus Jakarta Sans, system-ui, sans-serif',
+  theme-contentfont: 'Plus Jakarta Sans, system-ui, sans-serif',
+);
+
+@function get($var) {
+  @return map-get($defaults, $var);
+}
+
+// Set --default-theme vars on root
+:root {
+  @each $name, $value in $defaults {
+    --default-#{$name}: #{$value};
+  }
+}

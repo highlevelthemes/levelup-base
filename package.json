@@ -1,0 +1,51 @@
+{
+  "name": "level-up-theme-base",
+  "version": "1.0.0",
+  "description": "Base theme for GoHighLevel (GHL) websites and funnels to add global colors & fonts.",
+  "homepage": "https://levelupthemes.com",
+  "author": "joe@levelupthemes.com",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "gohighlevel",
+    "ghl",
+    "template",
+    "theme"
+  ],
+  "scripts": {
+    "clean": "del-cli dist/version dist/css dist/js .dev",
+    "changelog": "auto-changelog -p -t src/snippets/changelog.hbs --commit-limit false --hide-empty-releases --hide-credit",
+    "deploy": "git push && git push --tags",
+    "postdeploy": "node purgeCache.js",
+    "predev": "del-cli .dev",
+    "dev": "rollup --config rollup.config.dev.js --watch --environment OPENPAGE:true",
+    "prebuild": "npm run clean && npm run update:versions",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "npm run build:css:core && npm run build:css:core:min && npm run build:css:process && npm run build:css:config",
+    "build:css:core": "sass --style=expanded --no-source-map src/scss/editor.scss:dist/css/editor.css src/scss/live.scss:dist/css/live.css",
+    "build:css:core:min": "sass --style=compressed --no-source-map src/scss/editor.scss:dist/css/editor.min.css src/scss/live.scss:dist/css/live.min.css",
+    "postbuild:css:core:min": "npm run update:banners",
+    "build:css:process": "postcss --replace \"dist/css/**/*.css\"",
+    "build:css:config": "sass --style=expanded --embed-sources src/scss/config.scss:dist/css/config.css",
+    "build:js": "rollup -c",
+    "update:banners": "node updateBanners.js",
+    "update:versions": "node updateVersions.js",
+    "version": "npm run build && npm run changelog && git add -A CHANGELOG.md dist version src/banner.css globalCode.html"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.5",
+    "auto-changelog": "^2.4.0",
+    "chalk": "^5.3.0",
+    "del-cli": "^5.1.0",
+    "glob": "^10.3.10",
+    "postcss": "^8.4.36",
+    "postcss-cli": "^11.0.0",
+    "postcss-preset-env": "^9.5.2",
+    "rollup": "^4.12.0",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-serve": "^1.1.1",
+    "sass": "^1.71.1",
+    "typescript": "^5.3.3"
+  }
+}

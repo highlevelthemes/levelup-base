@@ -1,0 +1,259 @@
+/**
+ * GHL EDITOR
+ * Make pages easier to edit and more visually consistent with the live version
+ **/
+
+@use "variables";
+
+/* Make the editor behave with @container queries only in mobile view */
+// Without the mobile selector, the tooltip has problems and jumps around
+// when selecting text in the desktop view.
+#{variables.$editorMobileContentSelector} {
+  container-type: inline-size;
+  container-name: #{variables.$editorContainerName};
+
+  // Fix the tools popup on mobile preview
+  // The container breaks position: fixed
+  div[id^="tippy"] {
+    position: absolute !important;
+  }
+}
+
+/* Style Editor Modifications */
+#{variables.$editorCreatorSelector} {
+  // Allow overflow for color labels; THIS BREAKS SCROLLING, DON'T USE
+  // .style-manager-container .tab-settings-container {
+  //   overflow: visible clip;
+  // }
+  // Enahnce theme colors
+  .hl_style-control .color-border {
+    :is(.color-box[title^="Theme"], .color-box[title="Transparent"], .color-box[title="Overlay"]) {
+      // Move theme colors to the front of the list
+      order: -1;
+      margin-bottom: 10px !important;
+
+      // Show theme color label on hover
+      &:hover {
+        &::before {
+          font-size: 10px;
+          content: var(--title, attr(title));
+          position: absolute;
+          left: 0;
+          top: -18px;
+          height: fit-content;
+          color: white;
+          background: #188bf6;
+          text-wrap: nowrap;
+          padding: 4px;
+          line-height: 1em;
+        }
+      }
+
+      // Show a short label under the theme color
+      &::after {
+        font-size: 10px;
+        content: var(--short-label, attr(title));
+        position: absolute;
+        overflow: clip;
+        left: 0;
+        bottom: -1.4em;
+        width: 100%;
+        height: 1rem;
+        text-align: center;
+        color: black;
+        background: white;
+      }
+
+      // Catchalls
+      &[title*="Text"] {
+        order: -60;
+        --short-label: "Text";
+      }
+      &[title*="Button"] {
+        order: -20;
+        --short-label: "Button";
+      }
+
+      // Specific colors
+      &[title="Theme Primary"] {
+        order: -100;
+        --title: "Primary";
+        --short-label: "Primary";
+      }
+      &[title="Theme Secondary"] {
+        order: -99;
+        --title: "Secondary";
+        --short-label: "Secondary";
+      }
+      &[title="Theme Accent"] {
+        order: -98;
+        --title: "Accent";
+        --short-label: "Accent";
+      }
+      &[title="Theme Attention"] {
+        order: -97;
+        --title: "Attention";
+        --short-label: "Attention";
+      }
+      &[title="Theme Background #1"] {
+        order: -90;
+        --title: "Background #1";
+        --short-label: "BG1";
+      }
+      &[title="Theme Background #2"] {
+        order: -89;
+        --title: "Background #2";
+        --short-label: "BG2";
+      }
+      &[title="Theme Background Dark"] {
+        order: -88;
+        --title: "Dark Background";
+        --short-label: "Dark";
+      }
+      &[title^="Theme Headline"] {
+        order: -70;
+        --title: "Headline Text";
+        --short-label: "Head";
+      }
+      &[title^="Theme Content"] {
+        order: -69;
+        --title: "Content Text";
+        --short-label: "Body";
+      }
+      &[title^="Theme Link"] {
+        order: -68;
+        --title: "Link Text";
+        --short-label: "Link";
+      }
+      &[title="Theme Dark Bg (Text)"] {
+        order: -67;
+        --title: "Dark Bg Text";
+        --short-label: "Text";
+      }
+      &[title="Theme Icon"] {
+        order: -50;
+        --title: "Icon";
+        --short-label: "Icon";
+      }
+      &[title="Theme Button Primary Background"] {
+        order: -30;
+        --title: "Button Background";
+        --short-label: "Button";
+      }
+      &[title="Theme Button Primary (Text)"] {
+        order: -29;
+        --title: "Button Text";
+        --short-label: "Button";
+      }
+    }
+
+    // Custom Value colors are used in config.scss to set the values of theme color vars.
+    // They are not meant to be selected directly in the editors.
+    .color-box[title^="[CV]"] {
+      // Hide CustomValue colors
+      display: var(--editor-display-custom-colors, none);
+
+      // Move to front of the list but after theme colors
+      order: -1;
+
+      margin-bottom: 10px !important;
+      border-radius: 0;
+      background-color: #ccc;
+      background-image: none;
+
+      // Show a label under the theme color
+      &::after {
+        content: "[CV]";
+        font-size: 10px;
+        position: absolute;
+        overflow: clip;
+        left: 0;
+        bottom: -1.4em;
+        width: 100%;
+        height: 1rem;
+        text-align: center;
+        color: black;
+        background: white;
+      }
+    }
+
+    // Add a red border around the active color
+    // Without this, a light color is hard to see it's active
+    .color-box .active-color {
+      border: 2px dotted red !important;
+    }
+  }
+
+  // TODO: show a warning message that CustomValue colors are not shown?
+  // .hl_style-control-group-label::after {
+  //   content: 'Some colors hidden';
+  // }
+}
+
+/* HELPER LABELS */
+// Show class labels in the editor to make it easier to see which classes are
+// being applied that effect layout or override GHL settings.
+
+@mixin helper-label($position: right) {
+  content: var(--_block-label);
+  position: absolute;
+  @if $position == left {
+    left: 1.5px;
+    bottom: -8px;
+  } @else {
+    right: 1.5px;
+    bottom: -22px;
+  }
+  border-radius: 2px;
+  font-size: 10px;
+  color: var(--white, #fff);
+  background-color: var(--indigo, #333);
+  line-height: 10px;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+// Card, Content & Button Labels
+#{variables.$editorCreatorSelector} {
+  .card,
+  .card2,
+  .content,
+  .c-button:has(.btn-primary, .btn-secondary, .btn-link) {
+    > .ui {
+      .outline-border::after {
+        @include helper-label;
+      }
+    }
+  }
+  .card {
+    --_block-label: "CARD";
+  }
+  .card2 {
+    --_block-label: "CARD2";
+  }
+  .content {
+    --_block-label: "CONTENT";
+  }
+  .c-button {
+    &:has(.btn-primary) {
+      --_block-label: "PRIMARY";
+    }
+    &:has(.btn-secondary) {
+      --_block-label: "SECONDARY";
+    }
+    &:has(.btn-link) {
+      --_block-label: "LINK";
+    }
+  }
+
+  // Icon2
+  .icon2,
+  .icon2-invert {
+    > .ui {
+      .outline-border::before {
+        @include helper-label(left);
+        --_block-label: "ICON2";
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+/////////////////////////////////////////////////////////////////
+// MIXINS
+/////////////////////////////////////////////////////////////////
+
+@use "sass:string";
+@use "variables";
+
+$includeEditorQueries: false !default;
+$includeContainerQueries: false !default;
+
+// Media Queries
+// GHL's mobile-only class applies to min-width: 768px which hides elements on
+// mobile ANd tablet like iPad Mini. Our mobile only is limited to 480px and smaller.
+// The breakpoints do not really map to modern device sizes, especially in landscape
+// orientation. We're using the GHL default breakpoints for consistency and predicability.
+$breakpointMobile: 480px !default;
+$breakpointTablet: 767px !default;
+// Tablet only should only be used for edge cases - USE SPARINGLY!
+
+// Outline the element and add a label
+// Useful for local dev
+@mixin highlight-label($label, $color) {
+  border: 1px dotted $color !important;
+  &::before {
+    font-size: 10px;
+    font-family: var(--contentfont);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0px 4px;
+    content: $label;
+    background-color: $color;
+    color: white;
+  }
+}
+
+@mixin repeat($prefix, $num, $start: 1, $suffix: "") {
+  @for $i from $start to ($start + $num) {
+    #{$prefix + $i + $suffix} {
+      @content ($i);
+    }
+  }
+}
+
+@mixin repeatList($prefix, $list, $suffix: "") {
+  @each $item in $list {
+    #{$prefix + $item + $suffix} {
+      @content ($item);
+    }
+  }
+}
+
+@function repeatString($prefix, $num, $start: 1, $suffix: "") {
+  $str: "";
+  @for $i from $start to ($start + $num) {
+    $str: $str + "," + $prefix + $i + $suffix;
+  }
+  $str: string.slice($str, 2);
+  @return $str;
+}
+
+@function getMediaCondition($c) {
+  $condMap: (
+    "screen": "only screen",
+    "print": "only print",
+    "retina":
+      "(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 120dpi)",
+    ">mobile": "(min-width: #{$breakpointMobile + 1})",
+    "<mobile": "(max-width: #{$breakpointMobile})",
+    ">tablet": "(min-width: #{$breakpointTablet + 1})",
+    "<tablet": "(max-width: #{$breakpointTablet})",
+    "hover": "(hover: hover)",
+    "prefers-animation": "(prefers-reduced-motion: no-preference)",
+    "prefers-reduced-animation": "(prefers-reduced-motion: reduce)",
+  );
+  @return map-get($condMap, $c);
+}
+
+@function getContainerCondition($c) {
+  $condMap: (
+    "screen": "",
+    "print": "",
+    "retina": "",
+    ">mobile": "(min-width: #{$breakpointMobile + 1})",
+    "<mobile": "(max-width: #{$breakpointMobile})",
+    ">tablet": "(min-width: #{$breakpointTablet + 1})",
+    "<tablet": "(max-width: #{$breakpointTablet})",
+    "hover": "",
+    "prefers-animation": "",
+  );
+  @return map-get($condMap, $c);
+}
+
+// Media mixin
+// In editor view, any media query that targets >size e.g. ">mobile" will
+// still activate in mobile editor view since the viewport media query will
+// match the current viewport size. Only <size queries will behave as expected
+// in the mobile editor view.
+// See adornments.scss for examples on adding a hack to turn hide elements in
+// mobile editor view.
+@mixin media($args...) {
+  @if ($includeEditorQueries) {
+    @include container(variables.$editorContainerName, $args...) {
+      @content;
+    }
+  }
+  $query: "";
+  @each $arg in $args {
+    $op: "";
+    @if ($query != "") {
+      $op: " and ";
+    }
+    $query: $query + $op + getMediaCondition($arg);
+  }
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin container($name, $args...) {
+  $query: "";
+  @each $arg in $args {
+    $op: "";
+    $condition: getContainerCondition($arg);
+    @if ($query != "" and $condition != "") {
+      $op: " and ";
+    }
+    $query: $query + $op + $condition;
+  }
+  // vscode will complain about @container rules in mixins; just ignore it
+  // https://dev.to/kenystev/css-container-queries-with-sass-mixins-6ic
+  @container #{$name} #{$query} {
+    @content;
+  }
+}
+
+@mixin editor-only($target: variables.$editorContentSelector) {
+  @if ($includeEditorQueries) {
+    #{$target} & {
+      /* Editor Only */
+      @content;
+    }
+  }
+}

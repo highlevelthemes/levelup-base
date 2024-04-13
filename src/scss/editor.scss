@@ -1,0 +1,28 @@
+@use "../banner";
+
+/*--------------------------------------------------------------
+THEME CSS FOR GHL EDITOR & LIVE VIEW
+
+- Includes CSS for both live and editor views
+- Uses @media and @container queries to provide consistency when editing mobile layouts
+- Modifies color palette in Editor with theme labels
+
+Add editor option vars to :root in GHL Custom CSS to modify editor behavior.
+
+EDITOR OPTIONS:
+
+Show custom value colors: block | none
+--editor-display-custom-colors: none;
+
+--------------------------------------------------------------*/
+
+// Some component selectors only target live views to ensure elements are
+// visible for editing in the editor. e.g. Card Flipper component does not
+// hide the backs of cards in the editor. It's safe to include the editor CSS
+// in the live view. It only increases file size.
+
+@use "mixins" with (
+  $includeEditorQueries: true
+);
+@use "config";
+@use "ghl-editor";

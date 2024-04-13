@@ -1,0 +1,143 @@
+/////////////////////////////////////////////////////////////////
+// CSS PROPERTIES
+//
+// Properties are used to define default values.
+// Useful for when a custom value is improperly configured.
+// Browser support is mixed for using initial values for an
+// undefined or invalid property value. All of the variables
+// are declared but may be undefined if the corresponding
+// Custom Value is not set. Chrome will use the @property
+// initial value. Firefox does not fallback to the initial
+// value. Javascript is used (see defaults.ts) to set undefined
+// values to the theme defaults.
+/////////////////////////////////////////////////////////////////
+
+@use "defaults";
+
+/* Theme Custom Properties */
+
+// [CustomValue] COLOR: Primary
+// {{ custom_values.color_primary }}
+// --theme-primary-color: var(--color-lt985yd7, #079561);
+@property --color-lt985yd7 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-primary-color")};
+}
+
+// [CustomValue] COLOR: Secondary
+// {{ custom_values.color_secondary }}
+// --theme-secondary-color: var(--color-lt9ca2ns, #56D296);
+@property --color-lt9ca2ns {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-secondary-color")};
+}
+
+// [CustomValue] COLOR: Accent
+// {{ custom_values.color_accent }}
+// --theme-accent-color: var(--color-luhfgx7m, yellow);
+@property --color-luhfgx7m {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-accent-color")};
+}
+
+// [CustomValue] COLOR: Attention
+// {{ custom_values.color_attention }}
+// --theme-accent-color: var(--color-luhfsans, red);
+@property --color-luhfsans {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-attention-color")};
+}
+
+// [CustomValue] COLOR: Text Headline
+// {{ custom_values.color_text_headline }}
+// --theme-text-headline-color: var(--color-lt9cay4k);
+@property --color-lt9cay4k {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-text-headline-color")};
+}
+
+// [CustomValue] COLOR: Text Content
+// {{ custom_values.color_text_content }}
+// --theme-text-content-color: var(--color-lt9cbrrr);
+@property --color-lt9cbrrr {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-text-content-color")};
+}
+
+// [CustomValue] COLOR: Text Link
+// {{ custom_values.color_text_link }}
+// --theme-text-link-color: var(--color-lt9ceg80);
+@property --color-lt9ceg80 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-text-link-color")};
+}
+
+// [CustomValue] COLOR: Text Dark BG
+// {{ custom_values.color_text_content_dark_bg }}
+// --theme-text-dark-bg-color: var(--color-lt9cf6ne);
+@property --color-lt9cf6ne {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-text-dark-bg-color")};
+}
+
+// [CustomValue] COLOR: Icon
+// {{ custom_values.color_icon }}
+// --theme-icon-color: var(--color-lt9cg14m, #079561);
+@property --color-lt9cg14m {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-icon-color")};
+}
+
+// [CustomValue] COLOR: Button Primary Text
+// {{ custom_values.color_button_primary_text }}
+// --theme-button-primary-text-color: var(--color-lt9cge0z);
+@property --color-luhh4ycy {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-button-primary-text-color")};
+}
+
+// [CustomValue] COLOR: Button Primary BG
+// {{ custom_values.color_button_primary_bg }}
+// --theme-button-primary-bg-color: var(--color-lt9cgr2u, #079561);
+@property --color-luhgqfvg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-button-primary-bg-color")};
+}
+
+// [CustomValue] COLOR: Background #1
+// {{ custom_values.color_background_1 }}
+// --theme-background-1-color: var(--color-lt9cidqc);
+@property --color-lt9cidqc {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-background-1-color")};
+}
+
+// [CustomValue] COLOR: Background #2
+// {{ custom_values.color_background_2 }}
+// --theme-background-2-color: var(--color-lt9ciq7x);
+@property --color-lt9ciq7x {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-background-2-color")};
+}
+
+// [CustomValue] COLOR: Background Dark
+// {{ custom_values.color_background_dark }}
+// --theme-background-dark-color: var(--color-lt9cj7fg);
+@property --color-lt9cj7fg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #{defaults.get("theme-background-dark-color")};
+}

@@ -1,0 +1,15 @@
+////////////////////////////////////////
+// VARIABLES
+////////////////////////////////////////
+
+// Build version
+// This should be dynamically updated with a prebuild command
+$version: "1.1.x";
+
+// SASS VARIABLES
+$editorContentSelector: "section.hl_page-creator--content";
+$editorMobileContentSelector: "section.hl_page-creator--content.--mobile";
+$editorCreatorSelector: "#page-creator";
+$editorContainerName: "EditorViewPort";
+
+$liveSelector: "#preview-container";

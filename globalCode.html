@@ -1,0 +1,37 @@
+<!-- Add @import to each page Custom CSS to enable theme styles in editor
+@import url("https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@v1.0/dist/css/editor.css");
+-->
+
+<!-- Add this to a global code block in GHL websites & funnels -->
+<!-- LEVEL UP THEME -->
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@v1.0/dist/css/live.min.css");
+</style>
+<script src="https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@v1.0/dist/js/all.min.js" defer></script>
+<style data-theme-vars="colors">
+/* Set theme variables to GHL Custom Values */
+:root {
+  --color-lt985yd7: {{ custom_values.color_primary }};
+  --color-lt9ca2ns: {{ custom_values.color_secondary }};
+  --color-luhfgx7m: {{ custom_values.color_accent }};
+  --color-luhfsans: {{ custom_values.color_attention }};
+  --color-lt9cay4k: {{ custom_values.color_text_headline }};
+  --color-lt9cbrrr: {{ custom_values.color_text_content }};
+  --color-lt9ceg80: {{ custom_values.color_text_link }};
+  --color-lt9cf6ne: {{ custom_values.color_text_dark_bg }};
+  --color-lt9cg14m: {{ custom_values.color_icon }};
+  --color-luhh4ycy: {{ custom_values.color_button_primary_text }};
+  --color-luhgqfvg: {{ custom_values.color_button_primary_bg }};
+  --color-lt9cidqc: {{ custom_values.color_background_1 }};
+  --color-lt9ciq7x: {{ custom_values.color_background_2 }};
+  --color-lt9cj7fg: {{ custom_values.color_background_dark }};
+ }
+</style>
+<style data-theme-vars="globals">
+:root {
+  /* Override page fonts with global vars via javascript */
+  --global-headlinefont: {{ custom_values.font_headline }};
+  --global-contentfont: {{ custom_values.font_content }};
+}
+</style>
+<!-- END LEVEL UP THEME -->
