@@ -25,4 +25,5 @@ Show custom value colors: block | none
   $includeEditorQueries: true
 );
 @use "config";
+@use "components";
 @use "ghl-editor";
