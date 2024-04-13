@@ -24,22 +24,22 @@ async function showPurgeMessage() {
     )
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/css/live.min.css`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/css/live.min.css`
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/css/live.css`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/css/live.css`
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/css/editor.min.css`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/css/editor.min.css`
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/css/editor.css`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/css/editor.css`
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/js/all.min.js`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/js/all.min.js`
   )
   log(
-    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/js/all.js`
+    `https://cdn.jsdelivr.net/gh/highlevelthemes/levelup-base@${version}/dist/js/all.js`
   )
 }
 
