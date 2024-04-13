@@ -1,7 +1,7 @@
 /****************************************
  * Level Up Base Theme for High Level (GHL)
  * https//levelupthemes.com
- * Version: v1.0.1
+ * Version: v1.0.2
  ****************************************/
 /*
 THEME CSS FOR LIVE PAGES
@@ -164,4 +164,71 @@ THEME CSS FOR LIVE PAGES
   /* [CustomValue] COLOR: Background Dark */
   /* {{ custom_values.color_background_dark }} */
   --theme-background-dark-color: var(--color-lt9cj7fg);
+}
+
+/**
+ * SOCIAL LINKS
+ **/
+.fa-facebook:before {
+  content: "\f09a";
+}
+
+.fa-instagram:before {
+  content: "\f16d";
+}
+
+.fa-twitter:before {
+  content: "\f099";
+}
+
+.fa-slack:before {
+  content: "\f198";
+}
+
+.fa-linkedin-in:before {
+  content: "\f0e1";
+}
+
+.fa-youtube:before {
+  content: "\f167";
+}
+
+.fa-telegram:before {
+  content: "\f2c6";
+}
+
+.fa-whatsapp:before {
+  content: "\f232";
+}
+
+.fa-pinterest:before {
+  content: "\f0d2";
+}
+
+ul.social-links {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+ul.social-links li {
+  list-style: none;
+}
+ul.social-links li a {
+  margin: 0 5px 10px;
+}
+ul.social-links li a i {
+  padding: 5px;
+  border: 1px solid #9ba8a5;
+  font-size: 20px;
+  background-color: #9ba8a5;
+  border-radius: 40px;
+  color: #ffffff;
+  transition: background-color 0.5s linear;
+}
+ul.social-links li a[href]:not([href^=http]), ul.social-links li a[href=""], ul.social-links li a[href="-"] {
+  display: none;
+}
+ul.social-links li:hover a i {
+  background-color: var(--theme-button-primary-bg-color);
+  color: #ffffff;
 }
